@@ -5,7 +5,9 @@ generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["mongoDb"]
 }
-
+generator nexusPrisma {
+   provider = "nexus-prisma"
+}
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
