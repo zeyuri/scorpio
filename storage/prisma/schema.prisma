@@ -3,18 +3,17 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["mongoDb"]
 }
 generator nexusPrisma {
    provider = "nexus-prisma"
 }
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model ExternalModule {
-  id       String    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id       Int      @id @default(autoincrement())
   name     String    @unique
   url      String
 }

@@ -3,9 +3,18 @@
 
 
 type ExternalModule {
-  id: ID!
+  id: Int!
   name: String!
   url: String!
+}
+
+input ExternalModuleCreateInput {
+  name: String!
+  url: String!
+}
+
+type Mutation {
+  createOneExternal(data: ExternalModuleCreateInput!): ExternalModule!
 }
 
 type Query {

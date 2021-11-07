@@ -14,6 +14,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ExternalModuleCreateInput: { // input type
+    name: string; // String!
+    url: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -29,6 +33,7 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   ExternalModule: PrismaClient.ExternalModule;
+  Mutation: {};
   Query: {};
 }
 
@@ -44,9 +49,12 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   ExternalModule: { // field return type
-    id: string; // ID!
+    id: number; // Int!
     name: string; // String!
     url: string; // String!
+  }
+  Mutation: { // field return type
+    createOneExternal: NexusGenRootTypes['ExternalModule']; // ExternalModule!
   }
   Query: { // field return type
     externals: Array<NexusGenRootTypes['ExternalModule'] | null>; // [ExternalModule]!
@@ -55,9 +63,12 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   ExternalModule: { // field return type name
-    id: 'ID'
+    id: 'Int'
     name: 'String'
     url: 'String'
+  }
+  Mutation: { // field return type name
+    createOneExternal: 'ExternalModule'
   }
   Query: { // field return type name
     externals: 'ExternalModule'
@@ -65,6 +76,11 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createOneExternal: { // args
+      data: NexusGenInputs['ExternalModuleCreateInput']; // ExternalModuleCreateInput!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
@@ -75,7 +91,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 
