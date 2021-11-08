@@ -1,3 +1,5 @@
 node_modules
 .env*
 .terraform
+ui/terraform/.terraform.lock.hcl
+ui/terraform/terraform.tfstate.backup
