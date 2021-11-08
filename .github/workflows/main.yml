@@ -20,22 +20,21 @@ jobs:
             ${{ runner.os }}-
 
       - uses: pnpm/action-setup@v2.0.1
-        working-directory: ./ui
         with:
           version: 6.0.2
-          run_install: true
-          args: [--frozen-lockfile, --strict-peer-dependencies]
+          run_install: |
+            - recursive: true
+              args: [--frozen-lockfile, --strict-peer-dependencies]
       # Build the static site
       - name: Create static build
         run: pnpm build
-        working-directory: ./ui
+        working-directory: ui
       # Upload the artifact for other stages to use
       - name: Share artifact in github workflow
         uses: actions/upload-artifact@v1
-        working-directory: ./ui
         with:
           name: build
-          path: build
+          path: ./ui/build
   deploy:
     runs-on: ubuntu-latest
     needs: build
