@@ -1,8 +1,5 @@
 name: Deploy Production
-on:
-  push:
-    paths:
-      - "ui"
+on: [push]
 
 env:
   AWS_REGION: us-east-1
